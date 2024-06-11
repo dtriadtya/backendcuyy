@@ -100,7 +100,7 @@ class ReimburseController extends Controller
         error_log($request->image);
         try {
             $this->validate($request, [
-                'image' => 'required|file|mimes:jpg,png,jpeg,gif,svg|max:5120',
+                'image' => 'required|file|mimes:jpg,png,jpeg,gif,svg|max:10000',
             ]);
 
             $image = $request->file('image');
