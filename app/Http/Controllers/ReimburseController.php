@@ -104,8 +104,14 @@ class ReimburseController extends Controller
             ]);
 
             $image = $request->file('image');
-
-            $imageData = file_get_contents($image->getRealPath());
+            $img = new \Imagick($image->getRealPath());
+    
+            // Menyesuaikan ukuran gambar ke ukuran tetap
+            $img->cropThumbnailImage(250, 250);
+    
+            // Mengambil data gambar dalam bentuk BLOB
+            $imageData = $img->getImageBlob();
+    
             error_log($imageData);
 
             DB::table('reimburse')
